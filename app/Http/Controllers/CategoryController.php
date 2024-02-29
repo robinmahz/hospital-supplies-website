@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CatagoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -12,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return View("hospital.category.index", compact('categories'));
     }
 
     /**
@@ -20,15 +23,20 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return View("hospital.category.create", compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CatagoryRequest $request)
     {
-        //
+
+        Category::create($request->except('slug') + [
+            'slug' => Str::slug($request->name),
+        ]);
+        return redirect('/category');
     }
 
     /**
@@ -44,7 +52,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::all();
+        return view('hospital.category.edit', compact(['category', 'categories']));
     }
 
     /**
@@ -52,7 +61,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+        return redirect('/category');
     }
 
     /**
@@ -60,6 +70,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect('/category');
     }
 }
