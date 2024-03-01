@@ -20,6 +20,9 @@ export default {
             colors: {
                 "rich-black": "#0D1321",
                 "french-blue": "#0075C4",
+                "gun-metal": "#1F2937",
+                pumpkin: "#ED7D3A",
+                white: "#F0EAD6",
             },
         },
     },

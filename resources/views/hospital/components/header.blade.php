@@ -1,4 +1,4 @@
-<navbar class="flex justify-between pl-14 pr-20 bg-rich-black text-white">
+<navbar class="flex justify-between pl-14 pr-20 bg-rich-black text-[#ffff]">
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="logo" class="w-20"></a href="/">
     <div class="flex gap-10 items-center">
         <a class="hover:text-[tomato]" href="#">Home</a>
@@ -10,7 +10,7 @@
                 </svg>
             </div>
             <div class="hidden group-hover:block absolute bg-rich-black rounded-md">
-                <ul class="grid gap-4">
+                <ul class="grid gap-4 p-8">
                     @foreach ($categories as $category)
                         <li class="hover:text-[tomato]">{{ $category->name }}</li>
                     @endforeach

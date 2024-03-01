@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->paginate('10');
         return view('hospital.product.index', compact('products'));
     }
 
@@ -25,14 +26,14 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::latest()->paginate(10);
         return view('hospital.product.create', compact(['products', 'categories']));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         Product::create($request->except('slug') + ['slug' => Str::slug($request->name)]);
         return redirect('/product');
@@ -58,7 +59,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->all());
         return redirect('/product');

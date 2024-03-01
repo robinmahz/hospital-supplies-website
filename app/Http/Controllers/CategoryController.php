@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CatagoryRequest;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->paginate(10);
         return View("hospital.category.index", compact('categories'));
     }
 
@@ -23,14 +24,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->paginate('10');
         return View("hospital.category.create", compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CatagoryRequest $request)
+    public function store(CategoryRequest $request)
     {
 
         Category::create($request->except('slug') + [
@@ -59,7 +60,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
         return redirect('/category');
