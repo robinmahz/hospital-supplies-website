@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -12,8 +11,7 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('welcome', compact('categories'));
+        return view("welcome");
     }
 
     /**

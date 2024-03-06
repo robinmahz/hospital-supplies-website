@@ -1,10 +1,10 @@
 <navbar class="flex justify-between pl-14 pr-20 bg-rich-black text-[#ffff]">
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="logo" class="w-20"></a href="/">
     <div class="flex gap-10 items-center">
-        <a class="hover:text-[tomato]" href="#">Home</a>
-        <a class="hover:text-[tomato]" href="#">About</a>
+        <a class="hover:text-[tomato]" href="/">Home</a>
+        <a class="hover:text-[tomato]" href="/about">About</a>
         <div class="group cursor-pointer">
-            <div class="group-hover:text-[tomato] flex gap-1 ">Products <svg xmlns="http://www.w3.org/2000/svg"
+            <div class="group-hover:text-[tomato] flex gap-1 ">Shop <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>

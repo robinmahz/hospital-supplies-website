@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductGalleryController;
 use App\Http\Controllers\ProfileController;
-use App\Models\ProductGallery;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource("/", LandingPageController::class);
+Route::get("/about", function () {
+    return view("hospital.pages.about");
+});
 
 Route::get("/dashboard", function () {
     return view("dashboard");
@@ -36,9 +41,13 @@ Route::middleware("auth")->group(function () {
     Route::delete("/profile", [ProfileController::class, "destroy"])->name(
         "profile.destroy"
     );
-    Route::resource("/category", CategoryController::class);
-    Route::resource("/product", ProductController::class);
-    // Route::resource("/category", CategoryController::class);
+
+    Route::resources([
+        'product' => ProductController::class,
+        'category' => CategoryController::class,
+        'gallery' => GalleryController::class,
+    ]);
+    Route::delete('/productgallery/{id}', [ProductGalleryController::class, "destroy"]);
 });
 
 require __DIR__ . "/auth.php";

@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductGallery;
-use App\Traits\ImageTrait;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
-class ProductGalleryController extends Controller
+class GalleryController extends Controller
 {
-    use ImageTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('hospital.gallery.index');
     }
 
     /**
@@ -36,7 +34,7 @@ class ProductGalleryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductGallery $productGallery)
+    public function show(Gallery $gallery)
     {
         //
     }
@@ -44,7 +42,7 @@ class ProductGalleryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductGallery $productGallery)
+    public function edit(Gallery $gallery)
     {
         //
     }
@@ -52,7 +50,7 @@ class ProductGalleryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductGallery $productGallery)
+    public function update(Request $request, Gallery $gallery)
     {
         //
     }
@@ -60,11 +58,8 @@ class ProductGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Gallery $gallery)
     {
-        $productGallery = ProductGallery::find($id);
-        $this->delete('products', $productGallery->getRawOriginal('image'));
-        $productGallery->delete();
-        return redirect('/dashboard');
+        //
     }
 }

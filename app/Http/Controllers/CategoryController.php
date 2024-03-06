@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CatagoryRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      */
@@ -33,10 +35,17 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
-        Category::create($request->except('slug') + [
+        $rest = [
             'slug' => Str::slug($request->name),
-        ]);
+        ];
+        if (isset($request->image)) {
+            $image = $this->set('/categories', $request->file('image'));
+            $rest = [
+                'slug' => Str::slug($request->name),
+                'image' => $image,
+            ];
+        }
+        Category::create($request->except(['slug', 'image']) + $rest);
         return redirect('/category');
     }
 
@@ -45,7 +54,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('hospital.category.show', compact('category'));
     }
 
     /**
@@ -71,6 +80,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->delete('/categories', '/' . $category->getRawOriginal('image'));
         $category->delete();
         return redirect('/category');
     }

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_galleries', function (Blueprint $table) {
+        Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->foreignId('product_id')->ondelete('cascade')->nullable();
-            $table->foreignId('gallery_id')->ondelete('cascade')->nullable();
+            $table->enum('type', array('domestic', 'internation', 'blogs and article'));
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_galleries');
+        Schema::dropIfExists('galleries');
     }
 };

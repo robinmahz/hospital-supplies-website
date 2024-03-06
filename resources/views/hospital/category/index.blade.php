@@ -45,6 +45,8 @@
                         <td class="px-6 py-4 flex gap-2">
                             <a href="/category/{{ $category->id }}/edit">Edit</a>
                             <span>| </span>
+                            <a href="/category/{{ $category->id }}">Show</a>
+                            <span>| </span>
                             <form action="/category/{{ $category->id }}" method="POST">
                                 @csrf
                                 @method('delete')

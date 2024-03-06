@@ -1,4 +1,4 @@
-<footer class="bg-rich-black text-white px-20 pt-16 pb-4">
+<footer class="bg-rich-black text-[#ffff] px-20 pt-16 pb-4">
     <div class="flex justify-between">
         <div>
             <div class="font-bold">
