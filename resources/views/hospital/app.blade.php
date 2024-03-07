@@ -10,7 +10,9 @@
 </head>
 
 <body bg-[#F0EBD8]>
-    @include('hospital.components.header')
+    <nav class="sticky top-0 z-10">
+        @include('hospital.components.header')
+    </nav>
     <main>
         @yield('content')
     </main>

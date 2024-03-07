@@ -1,7 +1,7 @@
 @include('hospital.components.info')
 @extends('hospital.app')
 @section('content')
-    <h1>Hello</h1>
+    @include('hospital.components.scroller')
     <div>
         @include('hospital.components.card')
     </div>

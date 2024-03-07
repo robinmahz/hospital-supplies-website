@@ -24,6 +24,9 @@ Route::resource("/", LandingPageController::class);
 Route::get("/about", function () {
     return view("hospital.pages.about");
 });
+Route::get("/shop", function () {
+    return view("hospital.pages.about");
+});
 
 Route::get("/dashboard", function () {
     return view("dashboard");
