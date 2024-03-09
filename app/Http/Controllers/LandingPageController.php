@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -11,7 +12,8 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        return view("welcome");
+        $products = Product::paginate(9);
+        return view("welcome", compact('products'));
     }
 
     /**
