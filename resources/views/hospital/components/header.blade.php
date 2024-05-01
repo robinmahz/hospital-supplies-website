@@ -4,17 +4,18 @@
         <a class="hover:text-[tomato]" href="/">Home</a>
         <a class="hover:text-[tomato]" href="/about">About</a>
         <div class="group cursor-pointer">
-            <a href="/shop">
-                <div class="group-hover:text-[tomato] flex gap-1 ">Shop <svg xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </div>
-            </a>
+
+            <div class="group-hover:text-[tomato] flex gap-1 ">Shop <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </div>
             <div class="hidden group-hover:block absolute bg-rich-black rounded-md">
                 <ul class="grid gap-4 p-8">
                     @foreach ($categories as $category)
-                        <li class="hover:text-[tomato]">{{ $category->name }}</li>
+                        <a href="/shop/{{ $category->slug }}">
+                            <li class="hover:text-[tomato]">{{ $category->name }}</li>
+                        </a>
                     @endforeach
                 </ul>
             </div>
@@ -46,6 +47,6 @@
                 </ul>
             </div>
         </div>
-        <a class="hover:text-[tomato]" href="#">Contacts</a>
+        <a class="hover:text-[tomato]" href="/contact">Contacts</a>
     </div>
 </navbar>

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Feedback;
-use App\Models\Contact;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
-class ContactController extends Controller
+class ShopController extends Controller
 {
+    public function product(string $category, string $product)
+    {
+        $product = Product::where('slug', $product)->first();
+        return view("hospital.pages.product", compact('category', 'product'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("hospital.pages.contact");
+        return view("hospital.pages.about");
     }
 
     /**
@@ -30,22 +34,23 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        Mail::to('xyz@gmail.com')->send(new Feedback($request->all()));
-        return redirect('/');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Contact $contact)
+    public function show(string $id)
     {
-        //
+        $category = Category::where('slug', $id)->first();
+        $product = Product::where('category_id', $category->id)->get();
+        return view("hospital.pages.category", compact('category', 'product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Contact $contact)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +58,7 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +66,7 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contact $contact)
+    public function destroy(string $id)
     {
         //
     }
